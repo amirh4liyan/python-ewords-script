@@ -8,7 +8,7 @@ files_names = [argv[1], argv[3], argv[5]]
 files_set_name = [argv[2], argv[4], argv[6]]
 
 
-sets = dict()
+dictionary = dict()
 for element in files_names:
     with open(element, encoding="utf8") as f:
         content = f.readlines()
@@ -16,32 +16,34 @@ for element in files_names:
     p = myParser.Parser(content)
 
     p.remove_backslash_n()
-    #p.show()
 
-    p.find_divided_word_into_two_consecutive_lines()
-    #p.show()
+    # this should be done before clearing tilda from text
+    p.find_the_broken_word_between_two_consecutive_lines()
 
-
+    # remove some junk symbols
     p.replace_parentheses_with_space()
     p.replace_tilda_with_space()
     p.replace_black_circle_with_space()
-    p.replace_braces_with_space()
+    p.replace_square_braces_with_space()
+    p.replace_curly_braces_with_space()
     p.replace_dot_comma_with_space()
     p.replace_colon_semicolon_with_space()
-    #p.show()
 
+    # parsing line to words
     p.breakdown_to_words()
 
-    #p.key()
-
+    '''
+      pull abreviation words from text, this sould be done before con-
+      vert words to lower case
+    '''
     p.find_abreviations()
+    # show abreviation words
+    # p.abr()
 
-    #p.abr()
-
-    #p.key()
-
+    # convert all words to lowe case
     p.toLower()
 
+    # remove some strings that not regarding as word
     p.remove_numbers()
     p.remove_one_length_words()
     #p.remove_To_Be_words()
@@ -51,28 +53,29 @@ for element in files_names:
     #p.remove_uncategorized()
 
     diction = dict()
-    data = w.key()
+    data = p.key()
     for word in data:
         diction[word] = data.count(word)
     index = files_names.index(element)
-    sets[files_set_name[index]] = diction
+    dictionary[files_set_name[index]] = diction
+
 
 # find union of all sets
 u = set()
-for key in sets:
-    individualSet = set(sets[key].keys())
+for key in dictionary:
+    individualSet = set(dictionary[key].keys())
     u = u.union(individualSet)
 
 # find prime of each set and put them with OG sets
 set_of_words = dict()
-for key in sets:
-    keys = set(sets[key].keys())
+for key in dictionary:
+    keys = set(dictionary[key].keys())
     prime = u - keys
     index = files_set_name.index(key)
     set_of_words[f"-{files_set_name[index]}"] = prime
 
-for key in sets:
-    the_set = set(sets[key].keys())
+for key in dictionary:
+    the_set = set(dictionary[key].keys())
     set_of_words[key] = the_set
 
 # make different combination for sets
