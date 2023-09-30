@@ -1,69 +1,54 @@
 #!/usr/bin/python3
 
-from sys import argv 
 import myParser
+from sys import argv 
 
 
 files_names = [argv[1], argv[3], argv[5]]
 files_set_name = [argv[2], argv[4], argv[6]]
 
-'''
-counter = 1
-while True:
-    line = input(f"Enter {counter} files name: ")
-    if line != "":
-        files_names.append(line)
-    else:
-        break
-    line = input(f"Enter {counter} files name for set: ")
-    if line != "":
-        files_set_name.append(line)
-    else:
-        break
-    counter += 1
-'''
 
 sets = dict()
 for element in files_names:
     with open(element, encoding="utf8") as f:
         content = f.readlines()
 
-    w = myParser.Processor(content)
+    p = myParser.Parser(content)
 
-    w.remove_backslash_n()
-    #w.show()
+    p.remove_backslash_n()
+    #p.show()
 
-    w.find_divided_word_into_two_consecutive_lines()
-    #w.show()
+    p.find_divided_word_into_two_consecutive_lines()
+    #p.show()
 
 
-    w.replace_parentheses_with_space()
-    w.replace_tilda_with_space()
-    w.replace_black_circle_with_space()
-    w.replace_braces_with_space()
-    w.replace_dot_comma_with_space()
-    w.replace_colon_semicolon_with_space()
-    #w.show()
+    p.replace_parentheses_with_space()
+    p.replace_tilda_with_space()
+    p.replace_black_circle_with_space()
+    p.replace_braces_with_space()
+    p.replace_dot_comma_with_space()
+    p.replace_colon_semicolon_with_space()
+    #p.show()
 
-    w.breakdown_to_words()
+    p.breakdown_to_words()
 
-    #w.key()
+    #p.key()
 
-    w.find_abreviations()
+    p.find_abreviations()
 
-    #w.abr()
+    #p.abr()
 
-    #w.key()
+    #p.key()
 
-    w.toLower()
+    p.toLower()
 
-    w.remove_numbers()
-    w.remove_one_length_words()
-    #w.remove_To_Be_words()
-    #w.remove_conjunctions()
-    #w.remove_prepositions()
-    #w.remove_pronouns()
-    #w.remove_uncategorized()
+    p.remove_numbers()
+    p.remove_one_length_words()
+    #p.remove_To_Be_words()
+    #p.remove_conjunctions()
+    #p.remove_prepositions()
+    #p.remove_pronouns()
+    #p.remove_uncategorized()
 
     diction = dict()
     data = w.key()
