@@ -1,5 +1,6 @@
-class Processor:
-    
+# Unit 3
+
+class Parser:
     def __init__(self, dataSet):
         self.dataSet = dataSet
         self.words = list()
@@ -12,8 +13,8 @@ class Processor:
     def find_divided_word_into_two_consecutive_lines(self):
         '''
         example:
-            line 1) uppercase and lowercase letters can be used to represent a person’s name, and a field con-
-            line 2) sisting of decimal digits could represent a person’s age.
+            line 24) uppercase and lowercase letters can be used to represent a person’s name, and a field con-
+            line 25) sisting of decimal digits could represent a person’s age.
         
         '''
         for i in range(len(self.dataSet)-1):
