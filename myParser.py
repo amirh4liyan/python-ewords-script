@@ -1,5 +1,6 @@
 # Unit 3
 
+
 class Parser:
     def __init__(self, dataSet):
         self.dataSet = dataSet
@@ -10,7 +11,7 @@ class Parser:
         for i in range(len(self.dataSet)):
             self.dataSet[i] = self.dataSet[i].strip('\n')
     
-    def find_divided_word_into_two_consecutive_lines(self):
+    def find_the_broken_word_between_two_consecutive_lines(self):
         '''
         example:
             line 24) uppercase and lowercase letters can be used to represent a person’s name, and a field con-
@@ -36,9 +37,14 @@ class Parser:
             for c in '()':
                 self.dataSet[i] = self.dataSet[i].replace(c, ' ')
     
-    def replace_braces_with_space(self):
+    def replace_square_braces_with_space(self):
         for i in range(len(self.dataSet)):
             for c in '[]':
+                self.dataSet[i] = self.dataSet[i].replace(c, ' ')
+
+    def replace_curly_braces_with_space(self):
+        for i in range(len(self.dataSet)):
+            for c in '{}':
                 self.dataSet[i] = self.dataSet[i].replace(c, ' ')
     
     def replace_tilda_with_space(self):
@@ -80,7 +86,6 @@ class Parser:
         for i in range(len(self.words)):
             self.words[i] = self.words[i].lower()
             
-                
     def remove_numbers(self):
         extra = list()
         for word in self.words:
@@ -119,7 +124,6 @@ class Parser:
                 extra.append(word)
         self.remove_extra(extra)
         
-        
     def remove_prepositions(self):
         extra = list()
         prep = [
@@ -130,7 +134,6 @@ class Parser:
             if word in prep:
                 extra.append(word)
         self.remove_extra(extra)
-
 
     # Pronouns  
     # 1) Personal Pronouns:
@@ -155,8 +158,7 @@ class Parser:
     def remove_personal_pronouns(self):
         self.remove_subject_pronouns()
         self.remove_object_pronouns()
-    
-    
+
     # 2) Possessive Pronouns
     def remove_possessive_pronouns(self):
         extra = list()
@@ -165,8 +167,7 @@ class Parser:
             if word in pos:
                 extra.append(word)
         self.remove_extra(extra)
-    
-    
+
     # 3) Relative Pronouns
     def remove_relative_pronouns(self):
         extra = list()
@@ -175,8 +176,7 @@ class Parser:
             if word in rel:
                 extra.append(word)
         self.remove_extra(extra)
-    
-    
+
     # 4) Demonstrative Pronouns
     def remove_demonstrative_pronouns(self):
         extra = list()
@@ -185,8 +185,7 @@ class Parser:
             if word in demo:
                 extra.append(word)
         self.remove_extra(extra)
-    
-    
+
     # 5) Reflexive Pronouns
     def remove_reflexive_pronouns(self):
         extra = list()
@@ -205,8 +204,7 @@ class Parser:
         self.remove_relative_pronouns()
         self.remove_demonstrative_pronouns()
         self.remove_reflexive_pronouns()
-        
-        
+
     def remove_uncategorized(self, custom = []):
         extra = list()
         junk = ['be', 'have', 'do', 'not']
@@ -215,8 +213,7 @@ class Parser:
             if word in junk:
                 extra.append(word)
         self.remove_extra(extra)
-        
-        
+
     def key(self):
         return self.words
             
@@ -225,3 +222,4 @@ class Parser:
     
     def show(self):
         print(self.dataSet)
+
