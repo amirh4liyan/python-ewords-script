@@ -18,19 +18,24 @@ class Parser:
             line 25) sisting of decimal digits could represent a person’s age.
         
         '''
+        # need to fix bug from adams.txt
         for i in range(len(self.dataSet)-1):
             line = self.dataSet[i]
             nextLine = self.dataSet[i+1]
-            if line[-1] == '-':
-                end = nextLine.find(' ')
-                if not end == -1:
-                    secondPart = nextLine[:end]
-                    self.dataSet[i+1] = nextLine[end+1:]
-                else:
-                    secondPart = nextLine
-                    self.dataSet[i+1] = ""
+            try:
+                if line[-1] == '-':
+                    end = nextLine.find(' ')
+                    if not end == -1:
+                        secondPart = nextLine[:end]
+                        self.dataSet[i+1] = nextLine[end+1:]
+                    else:
+                        secondPart = nextLine
+                        self.dataSet[i+1] = ""
 
-                self.dataSet[i] = line[:-1] + secondPart
+                    self.dataSet[i] = line[:-1] + secondPart
+            except:
+                print(i)
+                raise "buggg"
     
     def replace_parentheses_with_space(self):
         for i in range(len(self.dataSet)):

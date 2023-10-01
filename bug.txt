@@ -1,0 +1,22 @@
+roots. We have f .0/ D 0, f .4/ D 2, f .10/  3:16228. Note that, although there are
+two numbers whose square is 4, namely, �2 and 2, only one of these numbers, 2, is the
+square root of 4. (Remember that a function assigns a unique value to each element in
+its domain;p it cannot assign two different values to the same input.) The square root
+function x always denotes p                         p root of x. The two solutions of
+                                 the nonnegative square
+the equation x 2 D 4 are x D 4 D 2 and x D � 4 D �2.
+                                                                x
+  EXAMPLE 4           The domain of the function h.x/ D 2             consists of all real
+                                                              x �4
+                      numbers except x D �2 and x D 2. Expressed in terms of inter-
+vals,
+     D.h/ D .�1; �2/ [ .�2; 2/ [ .2; 1/:
+Most of the functions we encounter will have domains that are either intervals or unions
+of intervals.
+                                                                                    p
+                                                         The domain of S.t/ D 1 � t 2 consists of all real numbers t for
+                                      EXAMPLE 5
+                                                         which 1 � t 2  0. Thus we require that t 2  1, or �1  t  1.
+                                    The domain is the closed interval Œ�1; 1.
+                                    Graphs of Functions
+

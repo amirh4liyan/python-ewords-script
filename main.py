@@ -10,6 +10,7 @@ files_set_name = [argv[2], argv[4], argv[6]]
 
 dictionary = dict()
 for element in files_names:
+    print(element)
     with open(element, encoding="utf8") as f:
         content = f.readlines()
 
