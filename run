@@ -1,2 +1,2 @@
 #!/bin/bash
-python3 main.py first.txt A second.txt B third.txt C
+python3 main.py bug.txt A boyce.txt B lpic.txt L
