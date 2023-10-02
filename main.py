@@ -44,14 +44,13 @@ for element in files_names:
     print("remove junk symbols: ", t5 - t4)
     # parsing line to words
     p.breakdown_to_words()
-
     t6 = time.time()
     print("breakdown to words: ", t6 - t5)
     '''
       pull abreviation words from text, this sould be done before con-
       vert words to lower case
     '''
-    p.find_abreviations()
+    #p.find_abreviations()
     # show abreviation words
     # p.abr()
 
@@ -63,8 +62,9 @@ for element in files_names:
     t8 = time.time()
     print("to lower: ", t8 - t7)
     # remove some strings that not regarding as word
-    p.remove_numbers()
-    p.remove_one_length_words()
+    p.remove_non_words()
+    #p.remove_numbers()
+    #p.remove_one_length_words()
     #p.remove_To_Be_words()
     #p.remove_conjunctions()
     #p.remove_prepositions()
@@ -85,6 +85,7 @@ for element in files_names:
     print("counting words ", t11 - t10)
     index = files_names.index(element)
     dictionary[files_set_name[index]] = diction
+    print(p.invalids)
 
 
 # find union of all sets
