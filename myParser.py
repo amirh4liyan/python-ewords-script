@@ -1,6 +1,16 @@
 # Unit 3
 
 class Parser:
+
+    invalids = set()
+    upper_words = {65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78
+                    , 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90}
+    lower_words = {97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107
+                    , 108, 109, 110, 111, 112, 113, 114, 115, 116, 117
+                    , 118, 119, 120, 121, 122}
+    valid_asciis = set.union(upper_words, lower_words, {45})
+
+
     def __init__(self, dataSet):
         self.dataSet = dataSet
         self.words = list()
@@ -85,7 +95,24 @@ class Parser:
     def toLower(self):
         for i in range(len(self.words)):
             self.words[i] = self.words[i].lower()
-            
+
+    def is_valid(self, word):
+        if len(word) < 3:
+            return False
+        for char in word:
+            if ord(char) not in self.valid_asciis:
+                self.invalids.add(char)
+                return False
+        #print(f"word: {word}, {valid}")
+        return True
+
+    def remove_non_words(self):
+        extra = list()
+        for word in self.words:
+            if not self.is_valid(word):
+                extra.append(word)
+        self.remove_extra(extra)
+
     def remove_numbers(self):
         extra = list()
         for word in self.words:
