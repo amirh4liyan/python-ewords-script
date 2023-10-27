@@ -88,23 +88,22 @@ for element in files_names:
     print(p.invalids)
 
 
-# find union of all sets
-u = set()
+
+# find union of all sets and also add sets to set_of_words
+set_of_words = dict()
+union_of_sets = set()
 for key in dictionary:
-    individualSet = set(dictionary[key].keys())
-    u = u.union(individualSet)
+    set_of_words[key] = set(dictionary[key].keys())
+    union_of_sets = union_of_sets.union(set_of_words[key])
 
 # find prime of each set and put them with OG sets
-set_of_words = dict()
 for key in dictionary:
     keys = set(dictionary[key].keys())
-    prime = u - keys
+    prime = union_of_sets - keys
     index = files_set_name.index(key)
     set_of_words[f"-{files_set_name[index]}"] = prime
 
-for key in dictionary:
-    the_set = set(dictionary[key].keys())
-    set_of_words[key] = the_set
+print(set_of_words)
 
 # make different combination for sets
 states = []
@@ -117,7 +116,6 @@ for i in range(2**n):
         else:
             bits.append("1")
     states.append("".join(bits))
-
 
 for case in states:
     shelf = []
