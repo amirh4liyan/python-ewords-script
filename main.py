@@ -88,7 +88,6 @@ for element in files_names:
     print(p.invalids)
 
 
-
 # find union of all sets and also add sets to set_of_words
 set_of_words = dict()
 union_of_sets = set()
@@ -102,8 +101,6 @@ for key in dictionary:
     prime = union_of_sets - keys
     index = files_set_name.index(key)
     set_of_words[f"-{files_set_name[index]}"] = prime
-
-print(set_of_words)
 
 # make different combination for sets
 states = []
@@ -129,14 +126,22 @@ for case in states:
             shelf.append(f"-{files_set_name[i]}")
     txt_name = "".join(txt_char)
     # ignore full prime set like: -A-B
-    try:
+    if "-" in txt_name:
         if len(txt_name) / txt_name.count("-") == 2:
             continue
-    except:
-        pass
+
     words = set_of_words[shelf[0]]
-    for key in shelf[1:]:
+    for key in shelf:
         words = words.intersection(set_of_words[key])
+    
+    diction = dict()
+    for word in words:
+        count = 0
+        for key in shelf: 
+            if not "-" in key:
+                count += dictionary[key][word]
+        diction[word] = count
+    print(diction)
     with open(txt_name, "w") as f:
-        for word in words:
-            f.write(word+"\n")
+        for keyword in diction:
+            f.write(f"{keyword}    {diction[keyword]}\n")
